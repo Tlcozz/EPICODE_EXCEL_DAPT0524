@@ -1,87 +1,45 @@
-CREATE TABLE Store (
-    CodiceStore INT PRIMARY KEY,
-    IndirizzoFisico VARCHAR(255),
-    NumeroTelefono VARCHAR(20)
-);
-INSERT INTO Store (CodiceStore, IndirizzoFisico, NumeroTelefono) VALUES
-(1, 'Via Roma 123, Milano', '+39 02 1234567'),
-(2, 'Corso Italia 456, Roma', '+39 06 7654321'),
-(3, 'Piazza San Marco 789, Venezia', '+39 041 9876543'),
-(4, 'Viale degli Ulivi 234, Napoli', '+39 081 3456789'),
-(5, 'Via Torino 567, Torino', '+39 011 8765432'),
-(6, 'Corso Vittorio Emanuele 890, Firenze', '+39 055 2345678'),
-(7, 'Piazza del Duomo 123, Bologna', '+39 051 8765432'),
-(8, 'Via Garibaldi 456, Genova', '+39 010 2345678'),
-(9, 'Lungarno Mediceo 789, Pisa', '+39 050 8765432'),
-(10, 'Corso Cavour 101, Palermo', '+39 091 2345678');
+SELECT table_name
+FROM information_schema.tables
+WHERE table_schema = 'CHINOOK';
 
 SELECT *
-FROM store;
-
-CREATE TABLE Impiegato (
-    CodiceFiscale VARCHAR(20) PRIMARY KEY,
-    Nome VARCHAR(50),
-    TitoloStudio VARCHAR(100),
-    Recapito VARCHAR(100)
-);
-INSERT INTO Impiegato (CodiceFiscale, Nome, TitoloStudio, Recapito) VALUES
-('ABC12345XYZ67890', 'Mario Rossi', 'Laurea in Economia', 'mario.rossi@email.com'),
-('DEF67890XYZ12345', 'Anna Verdi', 'Diploma di Ragioneria', 'anna.verdi@email.com'),
-('GHI12345XYZ67890', 'Luigi Bianchi', 'Laurea in Informatica', 'luigi.bianchi@email.com'),
-('JKL67890XYZ12345', 'Laura Neri', 'Laurea in Lingue', 'laura.neri@email.com'),
-('MNO12345XYZ67890', 'Andrea Moretti', 'Diploma di Geometra', 'andrea.moretti@email.com'),
-('PQR67890XYZ12345', 'Giulia Ferrara', 'Laurea in Psicologia', 'giulia.ferrara@email.com'),
-('STU12345XYZ67890', 'Marco Esposito', 'Diploma di Elettronica', 'marco.esposito@email.com'),
-('VWX67890XYZ12345', 'Sara Romano', 'Laurea in Giurisprudenza', 'sara.romano@email.com'),
-('YZA12345XYZ67890', 'Roberto De Luca', 'Diploma di Informatica', 'roberto.deluca@email.com'),
-('BCD67890XYZ12345', 'Elena Santoro', 'Laurea in Lettere', 'elena.santoro@email.com');
-
-SELECT *
-FROM impiegato;
-
-CREATE TABLE Servizio_Impiegato (
-    CodiceFiscale VARCHAR(20),
-    CodiceStore INT,
-    DataInizio DATE,
-    DataFine DATE,
-    Carica VARCHAR(50),
-    PRIMARY KEY (CodiceFiscale, CodiceStore)
-);
-
-INSERT INTO Servizio_Impiegato (CodiceFiscale, CodiceStore, DataInizio, DataFine, Carica) VALUES
-('ABC12345XYZ67890', 1, '2023-01-01', '2023-12-31', 'Cassiere'),
-('DEF67890XYZ12345', 2, '2023-02-01', '2023-11-30', 'Commesso'),
-('GHI12345XYZ67890', 3, '2023-03-01', '2023-10-31', 'Magazziniere'),
-('JKL67890XYZ12345', 4, '2023-04-01', '2023-09-30', 'Addetto alle vendite'),
-('MNO12345XYZ67890', 5, '2023-05-01', '2023-08-31', 'Addetto alle pulizie'),
-('PQR67890XYZ12345', 6, '2023-06-01', '2023-07-31', 'Commesso'),
-('STU12345XYZ67890', 7, '2023-07-01', '2023-06-30', 'Commesso'),
-('VWX67890XYZ12345', 8, '2023-08-01', '2023-05-31', 'Cassiere'),
-('YZA12345XYZ67890', 9, '2023-09-01', '2023-04-30', 'Cassiere'),
-('BCD67890XYZ12345', 10, '2023-10-01', '2023-03-31', 'Cassiere');
-
-SELECT *
-FROM servizio_impiegato;
-
-CREATE TABLE Videogioco (
-    Titolo VARCHAR(100),
-    AnnoDistribuzione DATE,
-    Genere VARCHAR(50),
-    Sviluppatore VARCHAR(50),
-    CostoAcquisto DECIMAL(5,2),
-    RemakeDi VARCHAR(100)
-);
-INSERT INTO Videogioco (Titolo, AnnoDistribuzione, Genere, Sviluppatore, CostoAcquisto, RemakeDi) VALUES
-('Fifa 2023', '2023-01-01', 'Calcio', 'EA Sports', 49.99, NULL),
-('Assassin''s Creed: Valhalla', '2020-01-01', 'Action', 'Ubisoft', 59.99, NULL),
-('Super Mario Odyssey', '2017-01-01', 'Platform', 'Nintendo', 39.99, NULL),
-('The Last of Us Part II', '2020-01-01', 'Action', 'Naughty Dog', 69.99, NULL),
-('Cyberpunk 2077', '2020-01-01', 'RPG', 'CD Projekt Red', 49.99, NULL),
-('Animal Crossing: New Horizons', '2020-01-01', 'Simulation', 'Nintendo', 54.99, NULL),
-('Call of Duty: Warzone', '2020-01-01', 'FPS', 'Infinity Ward', 0.00, NULL),
-('The Legend of Zelda: Breath of the Wild', '2017-01-01', 'Action-Adventure', 'Nintendo', 59.99, NULL),
-('Fortnite', '2020-01-01', 'Battle Royale', 'Epic Games', 0.00, NULL),
-('Red Dead Redemption 2', '2018-01-01', 'Action-Adventure', 'Rockstar Games', 39.99, NULL);
+FROM ALBUM
+LIMIT 10;
 
 SELECT*
-FROM videogioco;
+FROM TRACK;
+
+SELECT *
+FROM GENRE;
+
+ SELECT Track.Name, Genre.Name
+FROM Track
+JOIN Genre ON Track.GenreId = Genre.GenreId;
+
+SELECT TITLE, NAME
+FROM ARTIST ART 
+JOIN ALBUM AL ON art.ArtistId = al.ArtistId;
+
+SELECT 
+    Track.Name, 
+    Genre.Name, 
+    Track.Milliseconds
+FROM Track
+JOIN Genre ON Track.GenreId = Genre.GenreId;
+
+SELECT *
+FROM (
+    SELECT Album.TITLE, AVG(Track.Milliseconds) AS AvgDurata
+    FROM Track
+    JOIN Album ON Track.AlbumId = Album.AlbumId
+    GROUP BY Album.TITLE
+) AS AlbumDurataMedia;
+
+
+SELECT *
+FROM ARTIST 
+JOIN ALBUM ON ARTIST.ARTISTID=ALBUM.ARTISTID;
+
+
+
+
